@@ -1,4 +1,4 @@
-effective-android
+Effective Android
 =================
 
 Check list to write clean code

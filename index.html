@@ -1127,7 +1127,7 @@ for (int i=0; i&lt;len; i++) {
 </pre>
 <hr>
   <ul>
-    <li>1 is slow, because JIT can't yet optimize away the cost of getting the array length once for each iteration. This seems not good</li>
+    <li>1 is slow, because JIT can't yet optimize away the cost of getting the array length once for each iteration.</li>
     <li>2 is fast, you get the size once and avoid the first issue.</li>
   </ul>
   <hr>
@@ -1135,7 +1135,7 @@ for (int i=0; i&lt;len; i++) {
   <ul>
     <li>Use enhanced loop (check enhanced loop item)</li>
     <li>Aim readability.</li>
-    <li>Fastest for loop, according to link. I haven't tested.
+    <li>Fastest for loop, according to link. I haven't tested. I wouldn't use this unless you really really need performance
 <pre class="prettyprint">
 for (int i = initializer; i >= 0; i--) { ... }
 </pre>
@@ -1164,6 +1164,7 @@ for (int i = initializer; i >= 0; i--) { ... }
   <li>Use cache to store bitmaps, such LRUCache, LRUDiscCache.</li>
   <li>Use Picasso to get images from networks.</li>
   <li>For bitmap operations, use background worker</li>
+  <li>Scale the bitmap regarding to your screen size</li>
 </ul>
 <hr>
 <p>Read list</p>

@@ -272,7 +272,7 @@ Full-Width Styles
 }
 
 #forkme_banner {
-  display: block;
+  display: inline-block;
   position: absolute;
   top:0;
   right: 10px;
@@ -284,6 +284,14 @@ Full-Width Styles
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
+}
+
+#social {
+  display: block;
+  position: absolute;
+  top:10px;
+  left: 10px;
+  z-index: 10;
 }
 
 #header_wrap {

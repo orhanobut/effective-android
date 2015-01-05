@@ -1,4 +1,6 @@
-effective-android
+Effective Android
 =================
 
-Effective android items with samples
+Check list to write clean code
+
+http://orhanobut.github.io/effective-android/

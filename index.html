@@ -7,20 +7,22 @@
   <meta name="description" content="Effective Android : Effective android items with samples">
 
   <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 
   <title>Effective Android</title>
 </head>
 
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-58175229-1', 'auto');
-  ga('send', 'pageview');
+ga('create', 'UA-58175229-1', 'auto');
+ga('send', 'pageview');
 
 </script>
+
 
 <body>
 
@@ -112,7 +114,7 @@
         <p>Read list</p>
         <ul>
           <li><a href='http://en.wikipedia.org/wiki/Interface_segregation_principle'>http://en.wikipedia.org/wiki/Interface_segregation_principle</a></li>
-           <li><a href='http://www.oodesign.com/interface-segregation-principle.html'>http://www.oodesign.com/interface-segregation-principle.html</a></li>
+          <li><a href='http://www.oodesign.com/interface-segregation-principle.html'>http://www.oodesign.com/interface-segregation-principle.html</a></li>
         </ul>
 
 
@@ -200,11 +202,12 @@
         <p>Tips:</p>
         <ul>
           <li>Use static class for the view holder in the adapter</li>
-<pre>
+<pre class="prettyprint"> 
 class Adapter{
-  static class Holder{
-
-  }
+  
+     static class Holder{
+          TextView text;
+     }
 }</pre>
       </ul>
       <hr>
@@ -228,6 +231,7 @@ class Adapter{
         <li>Enhanced loop throws NPE if the list is null</li>
         <li>Not good for concurrency</li>
         <li>Use for loop if you need the count index</li>
+        <li>Use traditional for loop for arraylist for performance-critic. Traditional for loop is 3x faster than enhanced loop for ArrayList. Because in ArrayList, accessing an element is constant O(1) </li>
       </ul>
       <hr>
       <p>Read list</p>
@@ -237,812 +241,951 @@ class Adapter{
 
 
 
-
-      <h3><li>Use lazy load</h3></li>
-      <p>Do not load everything if the data is depended on situations. Do not initialize everything at the beginning in the classes.</p>
-      <img src='images/lazy-load.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Instantiate the json parser when needed</li>
-        <li>Instantiate the network adapter when needed</li>
-        <li>Instantiate fragments when they are called in the viewpager</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://en.wikipedia.org/wiki/Lazy_initialization'>http://en.wikipedia.org/wiki/Lazy_initialization</a></li>
-        <li><a href='http://www.javaworld.com/article/2077568/learn-java/java-tip-67--lazy-instantiation.html'>http://www.javaworld.com/article/2077568/learn-java/java-tip-67--lazy-instantiation.html</a></li>
-      </ul>
-
-
-
-
-      <h3><li>Use final where applicable</h3></li>
-      <ul>
-        <li>final declared fields cannot be reassigned</li>
-        <li>final declared methos cannot be overriden</li>
-        <li>final declared classes cannot be inherinted</li>
-      </ul>
-      <hr>
-      <p>Why and where to use final declarations?</p>
-      <ul>
-        <li>When declaring methods and classes, you should ask yourself why to use final. Because methods and classes should be open to extend/override. Remember open/closed principle unless you really don't want any change on them such as utility classes or critical methods.</li>
-        <li>When declaring fields, you should ask yourself why not use final keyword?</li>
-      </ul>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Use final for the fields in the adapter</li>
-        <li>Use final for utility classes</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://stackoverflow.com/questions/137868/using-final-modifier-whenever-applicable-in-java'>http://stackoverflow.com/questions/137868/using-final-modifier-whenever-applicable-in-java</a></li>
-        <li><a href='http://www.javaperformancetuning.com/tips/final.shtml'>http://www.javaperformancetuning.com/tips/final.shtml</a></li>
-      </ul>
+  <h3><li>Use lazy load</h3></li>
+  <p>Do not load everything if the data is depended on situations. Do not initialize everything at the beginning in the classes.</p>
+  <img src='images/lazy-load.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Instantiate the json parser when needed</li>
+    <li>Instantiate the network adapter when needed</li>
+    <li>Instantiate fragments when they are called in the viewpager</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://en.wikipedia.org/wiki/Lazy_initialization'>http://en.wikipedia.org/wiki/Lazy_initialization</a></li>
+    <li><a href='http://www.javaworld.com/article/2077568/learn-java/java-tip-67--lazy-instantiation.html'>http://www.javaworld.com/article/2077568/learn-java/java-tip-67--lazy-instantiation.html</a></li>
+  </ul>
 
 
 
 
-
-      <h3><li>Lower the scope</h3></li>
-      <p>Advantages are:</p>
-      <ul>
-        <li>The more lower the less data expose. And also when it is finished, it will disposed.</li>
-        <li>Increased readabiliy</li>
-        <li>Try to localize as much as possible</li>
-      </ul>
-      <img src='images/lower-scope.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Do not make everything global in the activity/fragment/adapter for views</li>
-        <li>Use local as much as possible. Android studio warns you about this</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li></li>
-      </ul>
+  <h3><li>Use final where applicable</h3></li>
+  <ul>
+    <li>final declared fields cannot be reassigned</li>
+    <li>final declared methos cannot be overriden</li>
+    <li>final declared classes cannot be inherinted</li>
+  </ul>
+  <hr>
+  <p>Why and where to use final declarations?</p>
+  <ul>
+    <li>When declaring methods and classes, you should ask yourself why to use final. Because methods and classes should be open to extend/override. Remember open/closed principle unless you really don't want any change on them such as utility classes or critical methods.</li>
+    <li>When declaring fields, you should ask yourself why not use final keyword?</li>
+  </ul>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Use final for the fields in the adapter</li>
+    <li>Use final for utility classes</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://stackoverflow.com/questions/137868/using-final-modifier-whenever-applicable-in-java'>http://stackoverflow.com/questions/137868/using-final-modifier-whenever-applicable-in-java</a></li>
+    <li><a href='http://www.javaperformancetuning.com/tips/final.shtml'>http://www.javaperformancetuning.com/tips/final.shtml</a></li>
+  </ul>
 
 
 
 
 
-      <h3><li>Lower the modifier </h3></li>
-      <p>Same rule applies as lower the scope</p>
-      <ul>
-        <li>Lower the modifier and don't expose the data</li>
-        <li>Increased readabiliy</li>
-        <li>Try to localize as much as possible</li>
-        <li>Always start with private</li>
-      </ul>
-      <img src='images/lower-modifier.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Make everything private as much as possible.</li>
-        <li>In adapters, everything can be private</li>
-        <li>In activity/fragment everything can be private</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li></li>
-      </ul>
+  <h3><li>Lower the scope</h3></li>
+  <p>Advantages are:</p>
+  <ul>
+    <li>The more lower the less data expose. And also when it is finished, it will disposed.</li>
+    <li>Increased readabiliy</li>
+    <li>Try to localize as much as possible</li>
+  </ul>
+  <img src='images/lower-scope.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Do not make everything global in the activity/fragment/adapter for views</li>
+    <li>Use local as much as possible. Android studio warns you about this</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li></li>
+  </ul>
 
 
 
 
-      <h3><li>Do not use magic strings/numbers</h3></li>
-      <p>Our aim should be more readability, in order to achive that we need to make everything clear for ourselves</p>
-      <ul>
-        <li>Less error-prone</li>
-        <li>Increased readabiliy</li>
-      </ul>
-      <img src='images/magic-key.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Always use constants to explain your magic string/numbers</li>
-        <li>empty string is not magic</li>
-        <li>0 is not magic if you use it to check size</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li></li>
-      </ul>
+
+  <h3><li>Lower the modifier </h3></li>
+  <p>Same rule applies as lower the scope</p>
+  <ul>
+    <li>Lower the modifier and don't expose the data</li>
+    <li>Increased readabiliy</li>
+    <li>Try to localize as much as possible</li>
+    <li>Always start with private</li>
+  </ul>
+  <img src='images/lower-modifier.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Make everything private as much as possible.</li>
+    <li>In adapters, everything can be private</li>
+    <li>In activity/fragment everything can be private</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li></li>
+  </ul>
 
 
 
 
-      <h3><li>Consider law of demeter</h3></li>
-      <p></p>
-      <ul>
-        <li>Each unit should have only limited knowledge about other units: only units "closely" related to the current unit.</li>
-        <li>Each unit should only talk to its friends; don't talk to strangers.</li>
-        <li>Only talk to your immediate friends</li>
-      </ul>
-      <img src='images/law-of-demeter.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Communication between components should be with interfaces.</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://en.wikipedia.org/wiki/Law_of_Demeter'>http://en.wikipedia.org/wiki/Law_of_Demeter</a></li>
-      </ul>
+  <h3><li>Do not use magic strings/numbers</h3></li>
+  <p>Our aim should be more readability, in order to achive that we need to make everything clear for ourselves</p>
+  <ul>
+    <li>Less error-prone</li>
+    <li>Increased readabiliy</li>
+  </ul>
+  <img src='images/magic-key.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Always use constants to explain your magic string/numbers</li>
+    <li>empty string is not magic</li>
+    <li>0 is not magic if you use it to check size</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li></li>
+  </ul>
 
 
 
 
-      <h3><li>Do not cross max line width </h3></li>
-      <ul>
-        <li>Increases the readability</li>
-        <li>It will also force you to make clean/simple code</li>
-      </ul>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>For android I use 120 as default. I think it is better</li>
-        <li>Use group formatting when the line is long</li>
-        <li>Remember to localize if you want to shorten the line. Don't be afraid of that</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li></li>
-      </ul>
+  <h3><li>Consider law of demeter</h3></li>
+  <p></p>
+  <ul>
+    <li>Each unit should have only limited knowledge about other units: only units "closely" related to the current unit.</li>
+    <li>Each unit should only talk to its friends; don't talk to strangers.</li>
+    <li>Only talk to your immediate friends</li>
+  </ul>
+  <img src='images/law-of-demeter.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Communication between components should be with interfaces.</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://en.wikipedia.org/wiki/Law_of_Demeter'>http://en.wikipedia.org/wiki/Law_of_Demeter</a></li>
+  </ul>
 
 
 
 
-      <h3><li>Use switch where possible</h3></li>
-      <ul>
-        <li>Less error-prone</li>
-        <li>Increased readability</li>
-      </ul>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>With java 7, String can be used in the switch cases</li>
-        <li>You can use switch in onClick(), I prefer ButterKnife to split methods, more readable with that way</li>
-        <li>Use enums/constants to make readable cases</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://programmers.stackexchange.com/questions/15820/should-i-use-switch-statements-or-long-if-else-chains'>http://programmers.stackexchange.com/questions/15820/should-i-use-switch-statements-or-long-if-else-chains</a></li>
-      </ul>
+  <h3><li>Do not cross max line width </h3></li>
+  <ul>
+    <li>Increases the readability</li>
+    <li>It will also force you to make clean/simple code</li>
+  </ul>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>For android I use 120 as default. I think it is better</li>
+    <li>Use group formatting when the line is long</li>
+    <li>Remember to localize if you want to shorten the line. Don't be afraid of that</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li></li>
+  </ul>
 
 
 
 
-      <h3><li>Use executer service</h3></li>
-      <p>Let the service handle taking care of threads.</p>
-      <ul>
-        <li>Less error-prone</li>
-        <li>Take advantage of thread pool</li>
-      </ul>
-      <img src='images/executer-service.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>For drawing you can create a thread and let the executer service handle it</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html'>http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html</a></li>
-      </ul>
+  <h3><li>Use switch where possible</h3></li>
+  <ul>
+    <li>Less error-prone</li>
+    <li>Increased readability</li>
+  </ul>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>With java 7, String can be used in the switch cases</li>
+    <li>You can use switch in onClick(), I prefer ButterKnife to split methods, more readable with that way</li>
+    <li>Use enums/constants to make readable cases</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://programmers.stackexchange.com/questions/15820/should-i-use-switch-statements-or-long-if-else-chains'>http://programmers.stackexchange.com/questions/15820/should-i-use-switch-statements-or-long-if-else-chains</a></li>
+  </ul>
 
 
 
 
-      <h3><li>Do not log sensitive information</h3></li>
-      <ul>
-        <li>More secure application</li>
-        <li>Less exposed data</li>
-        <li>Logs can be retrieved if they are not removed</li>
-      </ul>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Use proguard to remove logs</li>
-        <li>Do not log passwords</li>
-        <li>Do not log usernames</li>
-        <li>Do not log credit card information</li>
-        <li>Do not log 3rd party data</li>
-        <li>Do not log device information</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='https://www.securecoding.cert.org/confluence/display/java/DRD04-J.+Do+not+log+sensitive+information'>https://www.securecoding.cert.org/confluence/display/java/DRD04-J.+Do+not+log+sensitive+information</a></li>
-      </ul>
+  <h3><li>Use executer service</h3></li>
+  <p>Let the service handle taking care of threads.</p>
+  <ul>
+    <li>Less error-prone</li>
+    <li>Take advantage of thread pool</li>
+  </ul>
+  <img src='images/executer-service.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>For drawing you can create a thread and let the executer service handle it</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html'>http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html</a></li>
+  </ul>
 
 
 
 
-      <h3><li>Use constants correctly</h3></li>
-      <ul>
-        <li>Only immutable objects and primivites can be constant</li>
-      </ul>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>private static final doesn't mean it is constants, make sure that the object is immutable</li>
-<pre>
-  private static final String KEY_NAME = "key_name";        // Constant
-  private static final MyAdapter adapter = new Adapter();   // This is not constant
-  private static String key_name = "key_name";              // This is not constant
-</pre>
-        <li></li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='https://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.2.4-constant-names'>https://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.2.4-constant-names</a></li>
-      </ul>
+  <h3><li>Do not log sensitive information</h3></li>
+  <ul>
+    <li>More secure application</li>
+    <li>Less exposed data</li>
+    <li>Logs can be retrieved if they are not removed</li>
+  </ul>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Use proguard to remove logs</li>
+    <li>Do not log passwords</li>
+    <li>Do not log usernames</li>
+    <li>Do not log credit card information</li>
+    <li>Do not log 3rd party data</li>
+    <li>Do not log device information</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='https://www.securecoding.cert.org/confluence/display/java/DRD04-J.+Do+not+log+sensitive+information'>https://www.securecoding.cert.org/confluence/display/java/DRD04-J.+Do+not+log+sensitive+information</a></li>
+  </ul>
 
 
 
 
-      <h3><li>Use static factory method</h3></li>
-      <ul>
-        <li>You can have meaningful constructors</li>
-        <li>The class itself has the object creation responsibility</li>
-        <li>You can control the instance such as singleton</li>
-        <li>You can return subclass instead of the base type</li>
-      </ul>
-      <img src='images/static-factory-method.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Activity class should create intent</li>
-<pre>
+  <h3><li>Use constants correctly</h3></li>
+  <ul>
+    <li>Only immutable objects and primivites can be constant</li>
+  </ul>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Use static final for constants. Without final, the compiler generates an initializer method which is called \<clinit\> and stores the value in the table and each time you use these values, they are accessed with field lookups. With final, you can avoid this and directly access the value. <a href='http://developer.android.com/training/articles/perf-tips.html#PreferStatic'>Check here for more details</a> </li>
+    <li>static final doesn't mean it is constants, make sure that the object is immutable</li>
+    <pre class="prettyprint">
+static final String KEY_NAME = "key_name";        // constant
+static final MyAdapter adapter = new Adapter();   // not constant
+static String key_name = "key_name";              // not constant</pre>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='https://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.2.4-constant-names'>https://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.2.4-constant-names</a></li>
+    <li><a href='http://developer.android.com/training/articles/perf-tips.html#PreferStatic'>http://developer.android.com/training/articles/perf-tips.html#PreferStatic</a></li>
+  </ul>
+
+
+
+
+  <h3><li>Use static factory method</h3></li>
+  <ul>
+    <li>You can have meaningful constructors</li>
+    <li>The class itself has the object creation responsibility</li>
+    <li>You can control the instance such as singleton</li>
+    <li>You can return subclass instead of the base type</li>
+  </ul>
+  <img src='images/static-factory-method.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Activity class should create intent</li>
+    <pre class="prettyprint">
 public class MyActivity extends Activity{
-   
-   private static final String KEY_NAME = "key_name";
 
-   public static Intent newIntent(Context context, String name){
-       Intent intent = new Intent(context, MyActivity.class);
-       intent.putString(KEY_NAME, name);
+    private static final String KEY_NAME = "key_name";
 
-       return intent;
-   }
+        public static Intent newIntent(Context context, String name){
+        Intent intent = new Intent(context, MyActivity.class);
+        intent.putString(KEY_NAME, name);
+
+        return intent;
+    }
 }</pre>
-        <li>Fragment class should create fragment</li>
-<pre>
+  <li>Fragment class should create fragment</li>
+  <pre class="prettyprint">
 public class MyFragment extends Fragment{
-   
-   private static final String KEY_NAME = "key_name";
 
-   public static Fragment newInstance(String name){
-       Bundle bundle = new Bundle();
-       bundle.putString(KEY_NAME, name);
+    private static final String KEY_NAME = "key_name";
 
-       Fragment fragment = new MyFragment();
-       fragment.setArgs(bundle);
+        public static Fragment newInstance(String name){
+        Bundle bundle = new Bundle();
+        bundle.putString(KEY_NAME, name);
 
-       return fragment;
-   }
+        Fragment fragment = new MyFragment();
+        fragment.setArgs(bundle);
+
+        return fragment;
+    }
 }</pre>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://twofoos.org/content/static-factory-methods/'>http://twofoos.org/content/static-factory-methods/</a></li>
-      </ul>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://twofoos.org/content/static-factory-methods/'>http://twofoos.org/content/static-factory-methods/</a></li>
+</ul>
 
 
 
 
-      <h3><li>Consider dependency injection</h3></li>
-      <p>An injection is the passing of a dependency (a service) to a dependent object (a client). The service is made part of the client's state.</p>
-      <ul>
-        <li>Increased reusability</li>
-        <li>Increased readability</li>
-        <li>Easier for unit testing</li>
-      </ul>
-      <img src='images/dependency-injection.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Pass the objects to fragments/adapters, thus they can be reusable</li>
-<pre>
+<h3><li>Consider dependency injection</h3></li>
+<p>An injection is the passing of a dependency (a service) to a dependent object (a client). The service is made part of the client's state.</p>
+<ul>
+  <li>Increased reusability</li>
+  <li>Increased readability</li>
+  <li>Easier for unit testing</li>
+</ul>
+<img src='images/dependency-injection.png' height='200' weight='400'/>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Pass the objects to fragments/adapters, thus they can be reusable</li>
+<pre class="prettyprint">
 public class MyAdapter extends BaseAdapter{
-   
-   private final List<String> list;
 
-   public MyAdapter(Context context, List<String> list){
-       this.list = list;
-   }
+    private final List<String> list;
+
+    public MyAdapter(Context context, List<String> list){
+        this.list = list;
+    }
 }</pre>        
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://en.wikipedia.org/wiki/Dependency_injection'>http://en.wikipedia.org/wiki/Dependency_injection</a></li>
-      </ul>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://en.wikipedia.org/wiki/Dependency_injection'>http://en.wikipedia.org/wiki/Dependency_injection</a></li>
+</ul>
 
 
 
 
-      <h3><li>Use appropriate names</h3></li>
-      <ul>
-        <li>Increased readability</li>
-        <li>Less error-prone</li>
-      </ul>
-      <img src='images/appropriate-naming.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Follow the google java naming conventions</li>
-        <li>If the project has a standart, always follow that</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='https://google-styleguide.googlecode.com/svn/trunk/javaguide.html'>https://google-styleguide.googlecode.com/svn/trunk/javaguide.html</a></li>
-      </ul>
+<h3><li>Use appropriate names</h3></li>
+<ul>
+  <li>Increased readability</li>
+  <li>Less error-prone</li>
+</ul>
+<img src='images/appropriate-naming.png' height='200' weight='400'/>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Follow the google java naming conventions</li>
+  <li>If the project has a standart, always follow that</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='https://google-styleguide.googlecode.com/svn/trunk/javaguide.html'>https://google-styleguide.googlecode.com/svn/trunk/javaguide.html</a></li>
+</ul>
 
 
 
 
-      <h3><li>Beware of substring issue</h3></li>
-      <p>Before java 7, substring operation creates a reference to main String and it might create memory leak if the string was too big such as buffer</p>
-      <ul>
-        <li>Potential memory leak</li>
-      </ul>
-      <img src='images/string-substring.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Use new String() for java < 7</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://www.programcreek.com/2013/09/the-substring-method-in-jdk-6-and-jdk-7/'>http://www.programcreek.com/2013/09/the-substring-method-in-jdk-6-and-jdk-7/</a></li>
-      </ul>
+<h3><li>Be aware of substring issue</h3></li>
+<p>Before java 7, substring operation creates a reference to main String and it might create memory leak if the string was too big such as buffer</p>
+<ul>
+  <li>Potential memory leak</li>
+</ul>
+<img src='images/string-substring.png' height='200' weight='400'/>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Use new String() for java < 7</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://www.programcreek.com/2013/09/the-substring-method-in-jdk-6-and-jdk-7/'>http://www.programcreek.com/2013/09/the-substring-method-in-jdk-6-and-jdk-7/</a></li>
+</ul>
 
 
 
 
-      <h3><li>Use TextUtils</h3></li>
-      <ul>
-        <li>Null condition check</li>
-      </ul>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>TextUtils.join</li>
-        <li>TextUtils.isEmpty</li>
-        <li>TextUtils.equals</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://developer.android.com/reference/android/text/TextUtils.html'>http://developer.android.com/reference/android/text/TextUtils.html</a></li>
-      </ul>
+<h3><li>Use TextUtils</h3></li>
+<ul>
+  <li>Null condition check</li>
+</ul>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>TextUtils.join</li>
+  <li>TextUtils.isEmpty</li>
+  <li>TextUtils.equals</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://developer.android.com/reference/android/text/TextUtils.html'>http://developer.android.com/reference/android/text/TextUtils.html</a></li>
+</ul>
 
 
 
 
-      <h3><li>Return Empty Collection</h3></li>
-      <ul>
-        <li>No need to check null conditions in client side</li>
-        <li>Good for enhanced loop</li>
-        <li>If it is null, return Collections.EMPTY_MAP/LIST/SET</li>
-      </ul>
-      <img src='images/empty-collections.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Use Collections utility class. You can use singleton EMPTY_LIST, EMPTY_MAP and EMPTY_SET</li>
-<pre>
+<h3><li>Return Empty Collection</h3></li>
+<ul>
+  <li>No need to check null conditions in client side</li>
+  <li>Good for enhanced loop</li>
+  <li>If it is null, return Collections.EMPTY_MAP/LIST/SET</li>
+</ul>
+<img src='images/empty-collections.png' height='200' weight='400'/>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Use Collections utility class. You can use singleton EMPTY_LIST, EMPTY_MAP and EMPTY_SET</li>
+<pre class="prettyprint">
 List<Foo> getList(){
-   if (list == null){
+    if (list == null){
        return Collections.<Foo>emptyList();
-   }
-   return list;
+    }
+    return list;
 }</pre>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://stackoverflow.com/questions/14846920/collections-emptymap-vs-new-hashmap'>http://stackoverflow.com/questions/14846920/collections-emptymap-vs-new-hashmap</a></li>
-      </ul>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://stackoverflow.com/questions/14846920/collections-emptymap-vs-new-hashmap'>http://stackoverflow.com/questions/14846920/collections-emptymap-vs-new-hashmap</a></li>
+</ul>
 
 
 
 
-      <h3><li>Do not reinvent the wheel</h3></li>
-      <ul>
-        <li>Use the latest algorithms for sorting/encyption</li>
-        <li>More stable, more tested, more accurate</li>
-      </ul>
-      <img src='images/do-not-reinvent.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Use Collections.sort</li>
-        <li>Use security class for encryption</li>
-        <li>Check android developer references API and Java API</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li></li>
-      </ul>
+<h3><li>Do not reinvent the wheel</h3></li>
+<ul>
+  <li>Use the latest algorithms for sorting/encyption</li>
+  <li>More stable, more tested, more accurate</li>
+</ul>
+<img src='images/do-not-reinvent.png' height='200' weight='400'/>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Use Collections.sort</li>
+  <li>Use security class for encryption</li>
+  <li>Check android developer references API and Java API</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li></li>
+</ul>
 
 
 
 
-      <h3><li>Use dp, sp</h3></li>
-      <ul>
-        <li>px is one pixel</li>
-        <li>sp is scale-independent pixels</li>
-        <li>dp(dip) is Density-independent pixels.</li>
-      </ul>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Use sp for font sizes. User can use bigger fonts by selecting in the device</li>
-        <li>Use dp for everything else</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android'>http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android</a></li>
-      </ul>
+<h3><li>Use dp, sp</h3></li>
+<ul>
+  <li>px is one pixel</li>
+  <li>sp is scale-independent pixels</li>
+  <li>dp(dip) is Density-independent pixels.</li>
+</ul>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Use sp for font sizes. User can use bigger fonts by selecting in the device</li>
+  <li>Use dp for everything else</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android'>http://stackoverflow.com/questions/2025282/difference-between-px-dp-dip-and-sp-in-android</a></li>
+</ul>
 
 
 
 
-      <h3><li>Consider Reversibility</h3></li>
-      <ul>
-        <li>Your code should be easily revert</li>
-      </ul>
-      <img src='images/reversibility.png' height='200' weight='400'/>
-      <hr>
-      <p>Tips:</p>
-      <ul>
-        <li>Make one entry point</li>
-        <li>Use injection approach</li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='http://en.wikipedia.org/wiki/Single_responsibility_principle'>http://en.wikipedia.org/wiki/Single_responsibility_principle</a></li>
-      </ul>
+<h3><li>Consider Reversibility</h3></li>
+<ul>
+  <li>Your code should be easily revert</li>
+</ul>
+<img src='images/reversibility.png' height='200' weight='400'/>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Make one entry point</li>
+  <li>Use injection approach</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://en.wikipedia.org/wiki/Single_responsibility_principle'>http://en.wikipedia.org/wiki/Single_responsibility_principle</a></li>
+</ul>
 
 
 
 
-      <h3><li>Avoid programming by coincidence</h3></li>
-      <p></p>
-      <ul>
-        <li>Don’t guess, prove it</li>
-        <li>Explain it very simply</li>
-        <li>Shorten edit/compile/test cycle</li>
-        <li>Unit test and refactor </li>
-      </ul>
-      <hr>
-      <p>Read list</p>
-      <ul>
-        <li><a href='https://pragprog.com/the-pragmatic-programmer/extracts/coincidence'>https://pragprog.com/the-pragmatic-programmer/extracts/coincidence</a></li>
-      </ul>
+<h3><li>Avoid programming by coincidence</h3></li>
+<p></p>
+<ul>
+  <li>Don’t guess, prove it</li>
+  <li>Explain it very simply</li>
+  <li>Shorten edit/compile/test cycle</li>
+  <li>Unit test and refactor </li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='https://pragprog.com/the-pragmatic-programmer/extracts/coincidence'>https://pragprog.com/the-pragmatic-programmer/extracts/coincidence</a></li>
+</ul>
 
 
 
 
-      <h3><li>Beware of Premature Optimization</h3></li>
-      <p>We should forget about small efficiencies, say about 97% of the time: premature optimization
-        is the root of all evil.</p>
-        <ul>
-          <li>Focus on the main thing</li>
-        </ul>
-        <img src='images/premature-optimization.png' height='200' weight='400'/>
-        <hr>
-        <p>Tips:</p>
-        <ul>
-          <li>Compiler is already making a lot of optimizations, check it</li>
-          <li>Use + operator for string concat unless it is a loop, then use StringBuilder. Compiler convert it to StringBuilder already</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='https://weblogs.java.net/blog/sdo/archive/2008/02/oh_go_ahead_pre.html'>https://weblogs.java.net/blog/sdo/archive/2008/02/oh_go_ahead_pre.html</a></li>
-        </ul>
+<h3><li>Be aware of Premature Optimization</h3></li>
+<p>We should forget about small efficiencies, say about 97% of the time: premature optimization
+  is the root of all evil.</p>
+  <ul>
+    <li>Focus on the main thing</li>
+  </ul>
+  <img src='images/premature-optimization.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Compiler is already making a lot of optimizations, check it</li>
+    <li>Use + operator for string concat unless it is a loop, then use StringBuilder. Compiler convert it to StringBuilder already</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='https://weblogs.java.net/blog/sdo/archive/2008/02/oh_go_ahead_pre.html'>https://weblogs.java.net/blog/sdo/archive/2008/02/oh_go_ahead_pre.html</a></li>
+  </ul>
 
 
-        
-
-        <h3><li>Do not repeat yourself</h3></li>
-        <p></p>
-        <ul>
-          <li>Always check duplicated code and encapsulate them and reuse</li>
-          <li>Increased readability, reusability</li>
-        </ul>
-        <img src='images/duplication.png' height='200' weight='400'/>
-        <hr>
-        <p>Tips:</p>
-        <ul>
-          <li>Use checkstyle to determine your duplication</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://en.wikipedia.org/wiki/Don%27t_repeat_yourself'>http://en.wikipedia.org/wiki/Don%27t_repeat_yourself</a></li>
-        </ul>
 
 
-        
-
-        <h3><li>Use Enums</h3></li>
-        <p></p>
-        <ul>
-          <li>Increased readability</li>
-          <li>Less error-prone</li>
-        </ul>
-        <img src='images/enums.png' height='200' weight='400'/>
-        <hr>
-        <p>Tips:</p>
-        <ul>
-          <li>Enum is a class, so treat it like a class.</li>
-          <li>Don't use static for enum, it is and will be already static by compiler</li>
-          <li>Every field is static final, so treat them like a constant</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://www.javapractices.com/topic/TopicAction.do?Id=1'>http://www.javapractices.com/topic/TopicAction.do?Id=1</a></li>
-        </ul>
+  <h3><li>Do not repeat yourself</h3></li>
+  <p></p>
+  <ul>
+    <li>Always check duplicated code and encapsulate them and reuse</li>
+    <li>Increased readability, reusability</li>
+  </ul>
+  <img src='images/duplication.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Use checkstyle to determine your duplication</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://en.wikipedia.org/wiki/Don%27t_repeat_yourself'>http://en.wikipedia.org/wiki/Don%27t_repeat_yourself</a></li>
+  </ul>
 
 
-        
-
-        <h3><li>Use builder pattern</h3></li>
-        <p></p>
-        <ul>
-          <li>Get rid of many constructors</li>
-          <li>Get immutable object</li>
-          <li>Add some controls for the fields</li>
-        </ul>
-        <img src='images/builder-pattern.png' height='200' weight='400'/>
-        <hr>
-        <p>Tips:</p>
-        <ul>
-          <li>Use builder to create response objects</li>
-          <li>Use builder to create adapters</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://www.javaworld.com/article/2074938/core-java/too-many-parameters-in-java-methods-part-3-builder-pattern.html'>http://www.javaworld.com/article/2074938/core-java/too-many-parameters-in-java-methods-part-3-builder-pattern.html</a></li>
-        </ul>
 
 
-        
-
-        <h3><li>Composition over inheritance</h3></li>
-        <p>Instead of extending a class, put the class object as a field and use it</p>
-        <ul>
-          <li>Increased reusability</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://en.wikipedia.org/wiki/Composition_over_inheritance'>http://en.wikipedia.org/wiki/Composition_over_inheritance</a></li>
-        </ul>
-
-
-        
-
-        <h3><li>Use CharSequence</h3></li>
-        <p></p>
-        <ul>
-          <li>Depend on abstractions</li>
-          <li>Increased reusability</li>
-        </ul>
-        <img src='images/charsequence.png' height='200' weight='400'/>
-        <hr>
-        <p>Tips:</p>
-        <ul>
-          <li>Views usually returns CharSequence</li>
-          <li>Depends on abstraction, so you can use CharSequence</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://stackoverflow.com/questions/1049228/charsequence-vs-string-in-java'>http://stackoverflow.com/questions/1049228/charsequence-vs-string-in-java</a></li>
-        </ul>
+  <h3><li>Use Enums</h3></li>
+  <p></p>
+  <ul>
+    <li>Increased readability</li>
+    <li>Less error-prone</li>
+  </ul>
+  <img src='images/enums.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Enum is a class, so treat it like a class.</li>
+    <li>Don't use static for enum, it is and will be already static by compiler</li>
+    <li>Every field is static final, so treat them like a constant</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://www.javapractices.com/topic/TopicAction.do?Id=1'>http://www.javapractices.com/topic/TopicAction.do?Id=1</a></li>
+  </ul>
 
 
-        
 
-        <h3><li>Constructive first, destructive last</h3></li>
-        <p>Make sure that your code is between constructive and descructive</p>
-        <img src='images/constructor-destructure.png' height='200' weight='400'/>
-        <hr>
-        <p>Tips:</p>
-        <ul>
-          <li>put the code before super() in onPause, onStop, onDestroy, on DestroyView</li>
-<pre>void onDestroy(){
-   ButterKnife.reset(this);
-   myBitmap = null;
-   // etc
-   super.onDestroy();
+
+  <h3><li>Use builder pattern</h3></li>
+  <p></p>
+  <ul>
+    <li>Get rid of many constructors</li>
+    <li>Get immutable object</li>
+    <li>Add some controls for the fields</li>
+  </ul>
+  <img src='images/builder-pattern.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Use builder to create response objects</li>
+    <li>Use builder to create adapters</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://www.javaworld.com/article/2074938/core-java/too-many-parameters-in-java-methods-part-3-builder-pattern.html'>http://www.javaworld.com/article/2074938/core-java/too-many-parameters-in-java-methods-part-3-builder-pattern.html</a></li>
+  </ul>
+
+
+
+
+  <h3><li>Composition over inheritance</h3></li>
+  <p>Instead of extending a class, put the class object as a field and use it</p>
+  <ul>
+    <li>Increased reusability</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://en.wikipedia.org/wiki/Composition_over_inheritance'>http://en.wikipedia.org/wiki/Composition_over_inheritance</a></li>
+  </ul>
+
+
+
+
+  <h3><li>Use CharSequence</h3></li>
+  <p></p>
+  <ul>
+    <li>Depend on abstractions</li>
+    <li>Increased reusability</li>
+  </ul>
+  <img src='images/charsequence.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Views usually returns CharSequence</li>
+    <li>Depends on abstraction, so you can use CharSequence</li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://stackoverflow.com/questions/1049228/charsequence-vs-string-in-java'>http://stackoverflow.com/questions/1049228/charsequence-vs-string-in-java</a></li>
+  </ul>
+
+
+
+
+  <h3><li>Constructive first, destructive last</h3></li>
+  <p>Make sure that your code is between constructive and descructive</p>
+  <img src='images/constructor-destructure.png' height='200' weight='400'/>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>put the code before super() in onPause, onStop, onDestroy, on DestroyView</li>
+<pre class="prettyprint">
+void onDestroy(){
+    ButterKnife.reset(this);
+    myBitmap = null;
+    // etc
+    super.onDestroy();
 }</pre>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li></li>
-        </ul>
+ </ul>
+ <hr>
+ <p>Read list</p>
+ <ul>
+  <li></li>
+</ul>
 
 
-        
-
-        <h3><li>Add comments when necessary</h3></li>
-        <p></p>
-        <ul>
-          <li>Increased readability</li>
-          <li>Less error-prone</li>
-          <li>If the comment is too much, something is wrong, fix it</li>
-          <li>If you write formulas, add some explanation</li>
-        </ul>
-        <hr>
-        <p>Tips:</p>
-        <ul>
-          <li>Use javadoc /** like that</li>
-          <li>Explain the situation from the 3rd person view</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li></li>
-        </ul>
 
 
-        
-
-        <h3><li>Consider immutability</h3></li>
-        <p></p>
-        <ul>
-          <li>Do not blindly use getter/setter for everything</li>
-          <li>Consider builder pattern/defensive copy etc</li>
-          <li>Immutability is thread-safe</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://en.wikipedia.org/wiki/Immutable_object'>http://en.wikipedia.org/wiki/Immutable_object</a></li>
-        </ul>
-
-
-        
-
-        <h3><li>Consider defensive copy</h3></li>
-        <p></p>
-        <ul>
-          <li>Increased immutability</li>
-          <li>Less mutation for the object, less error-prone</li>
-        </ul>
-        <img src='images/defensive-copy.png' height='200' weight='400'/>
-        <hr>
-        <p>Tips:</p>
-        <ul>
-          <li>Use copy constructor to copy objects</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://www.javapractices.com/topic/TopicAction.do?Id=15'>http://www.javapractices.com/topic/TopicAction.do?Id=15</a></li>
-        </ul>
+<h3><li>Add comments when necessary</h3></li>
+<p></p>
+<ul>
+  <li>Increased readability</li>
+  <li>Less error-prone</li>
+  <li>If the comment is too much, something is wrong, fix it</li>
+  <li>If you write formulas, add some explanation</li>
+</ul>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Use javadoc /** like that</li>
+  <li>Explain the situation from the 3rd person view</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='https://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.8.6-comments'>https://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.8.6-comments</a></li>
+</ul>
 
 
-        
-
-        <h3><li>Beware of SparseArray</h3></li>
-        <p></p>
-        <ul>
-          <li>No autoboxing</li>
-          <li>Not suitable for huge data</li>
-          <li>Less space complexity</li>
-          <li>Time complexity is log(n) </li>
-        </ul>
-        <hr>
-        <p>Tips:</p>
-        <ul>
-          <li>If the key is integer, use SparseArray</li>
-          <li>If the data is very huge, do not use it. Because access time complexity is log(N)</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://developer.android.com/reference/android/util/SparseArray.html'>http://developer.android.com/reference/android/util/SparseArray.html</a></li>
-        </ul>
 
 
-        
+<h3><li>Consider immutability</h3></li>
+<p></p>
+<ul>
+  <li>Do not blindly use getter/setter for everything</li>
+  <li>Consider builder pattern/defensive copy etc</li>
+  <li>Immutability is thread-safe</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://en.wikipedia.org/wiki/Immutable_object'>http://en.wikipedia.org/wiki/Immutable_object</a></li>
+</ul>
 
-        <h3><li>Fail-fast</h3></li>
-        <p>If you want to check some condition, check it first then continue on the flow</p>
-        <ul>
-          <li>Increased readability</li>
-        </ul>
-        <hr>
-        <p>Examples</p>
-        <ul>
-          <li></li>
-<pre>public void doSomething(Context context){
+
+
+
+<h3><li>Consider defensive copy</h3></li>
+<p></p>
+<ul>
+  <li>Increased immutability</li>
+  <li>Less mutation for the object, less error-prone</li>
+</ul>
+<img src='images/defensive-copy.png' height='200' weight='400'/>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Use copy constructor to copy objects</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://www.javapractices.com/topic/TopicAction.do?Id=15'>http://www.javapractices.com/topic/TopicAction.do?Id=15</a></li>
+</ul>
+
+
+
+
+<h3><li>Be aware of SparseArray</h3></li>
+<p></p>
+<ul>
+  <li>No autoboxing</li>
+  <li>Not suitable for huge data</li>
+  <li>Less space complexity</li>
+  <li>Time complexity is log(n) </li>
+</ul>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>If the key is integer, use SparseArray</li>
+  <li>If the data is very huge, do not use it. Because access time complexity is log(N)</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://developer.android.com/reference/android/util/SparseArray.html'>http://developer.android.com/reference/android/util/SparseArray.html</a></li>
+</ul>
+
+
+
+
+<h3><li>Fail-fast</h3></li>
+<p>If you want to check some condition, check it first then continue on the flow</p>
+<ul>
+  <li>Increased readability</li>
+</ul>
+<hr>
+<p>Examples</p>
+
+<pre class="prettyprint">
+public void doSomething(Context context){
    if (context == null){
-      throw new NullPointerException("blaba");
+       throw new NullPointerException("blaba");
    }
    //continue
- }
 }</pre>
-          <li></li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li></li>
-        </ul>
+
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://en.wikipedia.org/wiki/Fail-fast'>http://en.wikipedia.org/wiki/Fail-fast</a></li>
+</ul>
 
 
-        
-
-        <h3><li>Use proguard</h3></li>
-        <p></p>
-        <ul>
-          <li>Obfuscates</li>
-          <li>Decreases the size</li>
-          <li>Remove the logs</li>
-          <li>Slightly optimize</li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://developer.android.com/tools/help/proguard.html'>http://developer.android.com/tools/help/proguard.html</a></li>
-        </ul>
 
 
-        
+<h3><li>Use proguard</h3></li>
+<p></p>
+<ul>
+  <li>Obfuscates</li>
+  <li>Decreases the size</li>
+  <li>Remove the logs</li>
+  <li>Slightly optimize</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://developer.android.com/tools/help/proguard.html'>http://developer.android.com/tools/help/proguard.html</a></li>
+</ul>
 
-        <h3><li>Use zipalign</h3></li>
-        <p></p>
-        <ul>
-          <li>Optimizate the apk</li>
-          <li>Minimize execution times</li>
-          <li>Less memory consumption in runtime </li>
-        </ul>
-        <hr>
-        <p>Read list</p>
-        <ul>
-          <li><a href='http://developer.android.com/tools/help/zipalign.html'>http://developer.android.com/tools/help/zipalign.html</a></li>
-        </ul>
 
 
-        
-      </ol>
-    </section>
-  </div>
 
-  <!-- FOOTER  -->
-  <div id="footer_wrap" class="outer">
-    <footer class="inner">
-      <p class="copyright">Effective Android maintained by <a href="https://github.com/orhanobut">orhanobut</a></p>
-    </footer>
-  </div>
+<h3><li>Use zipalign on your final APK</h3></li>
+<p></p>
+<ul>
+  <li>Optimizate the apk</li>
+  <li>Minimize execution times</li>
+  <li>Less memory consumption in runtime </li>
+  <li>Google Play Store does not accept APK files that are not zipaligned.</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://developer.android.com/tools/help/zipalign.html'>http://developer.android.com/tools/help/zipalign.html</a></li>
+</ul>
+
+
+
+
+<h3><li>Be aware of internal getter/setters performance</h3></li>
+<ul>
+  <li>Within a class, accessing a field via getter is 3x slower than accessing it directly. For performance reason you should access to fields directly within the class.</li>
+  <li>Without JIT, accessing a direct field is 3x faster than invoking a getter method.</li>
+  <li>With JIT, accessing a field directly is same as like accessing a local, accessing a direct field is 7x faster than getter</li>
+</ul>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Use public interface to access fields outside of the class, such as getter.</li>
+  <li>Use proguard which can inline accessors for you</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://developer.android.com/training/articles/perf-tips.html#GettersSetters'>http://developer.android.com/training/articles/perf-tips.html#GettersSetters</a></li>
+</ul>
+
+
+
+
+<h3><li>Use floating-point type carefully</h3></li>
+<ul>
+  <li>floating-point is 2x slower than integer</li>
+  <li>Use more careful for division, division is handled by software, thus when you use it in performance-critic places, consider that.</li>
+  <li>floating-point type has rounding error</li>
+</ul>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Use BigDecimal for money calculation</li>
+  <li>float and double are the same in the speed terms, double is 2x larger, prefer double instead of float.</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://developer.android.com/training/articles/perf-tips.html#AvoidFloat'>http://developer.android.com/training/articles/perf-tips.html#AvoidFloat</a></li>
+  <li><a href='http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html'>http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html</a></li>
+</ul>
+
+
+
+
+<h3><li>Be aware of invisible performance hit when using inner class</h3></li>
+<p>When you access a private field of the enclosing class from the inner class, this is legal in compiler but illegal for VM. Compiler creates synthetic methods to solve this issue.</p>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>You can use package-private modifier, but prefer to private if you don't want to expose your field to outside</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://developer.android.com/training/articles/perf-tips.html#PackageInner'>http://developer.android.com/training/articles/perf-tips.html#PackageInner</a></li>
+</ul>
+
+
+
+
+<h3><li>Nested Fragments</h3></li>
+<p>If you use a fragment inside a fragment, remember to use child fragment manager for the nested fragment. <hr>
+<p>Tips:</p>
+<ul>
+  <li>Avoid to use nested fragments. Really too much trouble.</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://stackoverflow.com/questions/6847460/fragments-within-fragments'>http://stackoverflow.com/questions/6847460/fragments-within-fragments</a></li>
+</ul>
+
+
+
+      <h3><li>Deep dive into for loop</h3></li>
+<pre class="prettyprint">
+String[] list = ...
+
+//1
+for (int i=0; i&lt;list.length; i++) {
+   //do something
+}
+
+//2
+int len = list.length;
+for (int i=0; i&lt;len; i++) {
+   //do something
+}
+</pre>
+<hr>
+  <ul>
+    <li>1 is slow, because JIT can't yet optimize away the cost of getting the array length once for each iteration. This seems not good</li>
+    <li>2 is fast, you get the size once and avoid the first issue.</li>
+  </ul>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Use enhanced loop (check enhanced loop item)</li>
+    <li>Aim readability.</li>
+    <li>Fastest for loop, according to link. I haven't tested.
+<pre class="prettyprint">
+for (int i = initializer; i >= 0; i--) { ... }
+</pre>
+    </li>
+  </ul>
+  <hr>
+  <p>Read list</p>
+  <ul>
+    <li><a href='http://developer.android.com/training/articles/perf-tips.html#Loops'>http://developer.android.com/training/articles/perf-tips.html#Loops</a></li>
+    <li><a href='http://www.androidsnippets.com/how-to-write-faster-loops'>http://www.androidsnippets.com/how-to-write-faster-loops</a></li>
+  </ul>
+
+
+  <h3><li>Be careful with bitmaps</h3></li>
+<p></p>
+<ul>
+  <li>Keep the bitmap in memory only with the resolution you need.</li>
+  <li>On Android 2.2 (API 8) and lower, when GC occurs, app's thread get stopped, it causes lag</li>
+  <li>On Android 2.3, GC works concurrently, memory is reclaimed after bitmap is no longer needed</li>
+  <li>API 10 and lower, pixel data is stored in native, separated from the bitmap itself.You need to call recycle() in order to release the memory.</li>
+  <li>On android 3.0, pixel data is stored in dalvik heap, no need to call recycle(). GC will handle it</li>
+</ul>
+<hr>
+<p>Tips:</p>
+<ul>
+  <li>Use cache to store bitmaps, such LRUCache, LRUDiscCache.</li>
+  <li>Use Picasso to get images from networks.</li>
+  <li>For bitmap operations, use background worker</li>
+</ul>
+<hr>
+<p>Read list</p>
+<ul>
+  <li><a href='http://developer.android.com/training/displaying-bitmaps/manage-memory.html'>http://developer.android.com/training/displaying-bitmaps/manage-memory.html</a></li>
+  <li><a href='http://developer.android.com/training/displaying-bitmaps/cache-bitmap.html'>http://developer.android.com/training/displaying-bitmaps/cache-bitmap.html</a></li>
+
+</ul>
+
+
+
+
+</ol>
+</section>
+</div>
+
+<!-- FOOTER  -->
+<div id="footer_wrap" class="outer">
+  <footer class="inner">
+    <p class="copyright">Effective Android maintained by <a href="https://github.com/orhanobut">orhanobut</a></p>
+  </footer>
+</div>
 
 
 

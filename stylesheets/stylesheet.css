@@ -294,6 +294,14 @@ Full-Width Styles
   z-index: 10;
 }
 
+#social-share {
+  display: block;
+  position: absolute;
+  top:10px;
+  left: 90px;
+  z-index: 10;
+}
+
 #header_wrap {
   background: #212121;
   background: -moz-linear-gradient(top, #373737, #212121);

@@ -1,0 +1,23 @@
+<div class="panel panel-danger">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">41</span> Fail-fast</h3>
+	</div>
+	<div class="panel-body content">
+		In order to increase the readability, you can use the following approach.
+		<hr>
+		Instead of if else;
+		<pre class="prettyprint">if (value != null) {
+    //do something
+} else {
+    //do something different
+}</pre>
+<hr>
+You can check the fail status first then return or continue
+		<pre class="prettyprint">if (value == null) {
+    //do something
+    return;
+}
+//continue for the flow
+</pre>
+	</div>
+</div>

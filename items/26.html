@@ -1,0 +1,19 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">26</span> Return Empty Collection</h3>
+	</div>
+	<div class="panel-body content">
+		<ul>
+			<li>No need to check null conditions in client side</li>
+			<li>Good for enhanced loop</li>
+			<li>If it is null, return Collections.EMPTY_MAP/LIST/SET</li>
+		</ul>
+		<pre class="prettyprint">List<String> getList() {
+    return list != null 
+                ? list 
+                : Collections.&ltString>emptyList();
+}</pre>
+<hr>
+<a href="http://stackoverflow.com/questions/14846920/collections-emptymap-vs-new-hashmap">stackoverflow</a>
+	</div>
+</div>

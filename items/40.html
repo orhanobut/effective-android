@@ -1,0 +1,28 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">40</span> Consider defensive copy</h3>
+	</div>
+	<div class="panel-body content">
+		In order to have a complete immutable object, sometimes you may need to copy the mutable objects inside in your class.
+		<hr>
+		Assume that Bar class is mutable and you want to make Foo class immutable. When you return the bar like this, its state can be changed. Most people makes mistake that they assume making the object final would be just enough. Final will only prevent to change the reference but the state can be changed.
+		<pre class="prettyprint">class Foo {
+    private final Bar bar;
+    
+    public Bar getBar(){
+       return bar;
+    }
+}</pre>
+
+In order to avoid this, you can return a clone object instead of the original one. But of course this means you will create another object and it is a cost.
+		<pre class="prettyprint">class Foo {
+    private final Bar bar;
+    
+    public Bar getBar(){
+       return new Bar(bar);
+    }
+}</pre>
+<hr>
+<a href="http://www.javapractices.com/topic/TopicAction.do?Id=15">javapractices</a>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">48</span> Deep dive into for loop</h3>
+	</div>
+	<div class="panel-body content">
+		<pre class="prettyprint">
+String[] list = ...
+
+//1
+for (int i=0; i&lt;list.length; i++) {
+   //do something
+}
+
+//2
+int len = list.length;
+for (int i=0; i&lt;len; i++) {
+   //do something
+}
+</pre>
+<hr>
+  <ul>
+    <li>1 is slow, because JIT can't yet optimize away the cost of getting the array length once for each iteration.</li>
+    <li>2 is fast, you get the size once and avoid the first issue.</li>
+  </ul>
+  <hr>
+  <p>Tips:</p>
+  <ul>
+    <li>Use enhanced loop (check enhanced loop item)</li>
+    <li>Aim readability.</li>
+    <li>Fastest for loop, according to link. I haven't tested. I wouldn't use this unless you really really need performance</li>
+  </ul>
+
+<pre class="prettyprint">
+for (int i = initializer; i >= 0; i--) { ... }
+</pre>
+
+<hr>
+<a href="http://developer.android.com/training/articles/perf-tips.html#Loops">developer.android</a> - <a href="http://www.androidsnippets.com/how-to-write-faster-loops">androidsnippets</a>
+</div>
+</div>

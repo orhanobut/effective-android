@@ -1,0 +1,14 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">46</span> Invisible Inner class performance</h3>
+	</div>
+	<div class="panel-body content">
+		When you access a private field of the enclosing class from the inner class, this is legal in compiler but illegal for VM. Compiler creates synthetic methods to solve this issue
+		<hr>
+		<ul>
+			<li>You can use package-private modifier, but prefer to private if you don't want to expose your field to outside</li>
+		</ul>
+		<hr>
+		<a href="http://developer.android.com/training/articles/perf-tips.html#PackageInner">developer.android</a>
+	</div>
+</div>

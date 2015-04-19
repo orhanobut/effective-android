@@ -1,0 +1,14 @@
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">45</span> Use floating-point type carefully</h3>
+	</div>
+	<div class="panel-body content">
+		<ul>
+			<li>floating-point is 2x slower than integer</li>
+			<li>Use more careful for division, division is handled by software, thus when you use it in performance-critic places, consider that.</li>
+			<li>floating-point type has rounding error</li>
+		</ul>
+		<hr>
+		<a href="http://developer.android.com/training/articles/perf-tips.html#AvoidFloat">developer.android</a> - <a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html">oracle</a>
+	</div>
+</div>

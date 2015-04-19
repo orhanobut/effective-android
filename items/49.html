@@ -1,0 +1,16 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">49</span> Be careful with bitmaps</h3>
+	</div>
+	<div class="panel-body content">
+		<ul>
+			<li>Keep the bitmap in memory only with the resolution you need.</li>
+			<li>On Android 2.2 (API 8) and lower, when GC occurs, app's thread get stopped, it causes lag</li>
+			<li>On Android 2.3, GC works concurrently, memory is reclaimed after bitmap is no longer needed</li>
+			<li>API 10 and lower, pixel data is stored in native, separated from the bitmap itself.You need to call recycle() in order to release the memory.</li>
+			<li>On android 3.0, pixel data is stored in dalvik heap, no need to call recycle(). GC will handle it</li>
+		</ul>
+		<hr>
+		<a href="http://developer.android.com/training/displaying-bitmaps/manage-memory.html">developer.android</a> - <a href="http://developer.android.com/training/displaying-bitmaps/cache-bitmap.html">developer.android</a>
+	</div>
+</div>

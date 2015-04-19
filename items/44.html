@@ -1,0 +1,14 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">44</span> Internal getter/setters performance</h3>
+	</div>
+	<div class="panel-body content">
+		<ul>
+			<li>Within a class, accessing a field via getter is 3x slower than accessing it directly. For performance reason you should access to fields directly within the class.</li>
+			<li>Without JIT, accessing a direct field is 3x faster than invoking a getter method.</li>
+			<li>With JIT, accessing a field directly is same as like accessing a local, accessing a direct field is 7x faster than getter</li>
+		</ul>
+		<hr>
+		<a href="http://developer.android.com/training/articles/perf-tips.html#GettersSetters">developer.android</a>
+	</div>
+</div>

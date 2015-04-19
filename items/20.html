@@ -1,0 +1,15 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">20</span> Use constants correctly</h3>
+	</div>
+	<div class="panel-body content">
+		Only immutable objects and primivites can be constant
+		<hr>
+		<ul>
+			<li>Use static final for constants. Without final, the compiler generates an initializer method which is called \<clinit\> and stores the value in the table and each time you use these values, they are accessed with field lookups. With final, you can avoid this and directly access the value. <a href='http://developer.android.com/training/articles/perf-tips.html#PreferStatic'>Check here for more details</a> </li>
+			<li>static final doesn't mean it is constants, make sure that the object is immutable</li>
+		</ul>
+		<hr>
+		<a href="https://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s5.2.4-constant-names">google-code-style</a> - <a href="http://developer.android.com/training/articles/perf-tips.html#PreferStatic">developer.android</a>
+	</div>
+</div>

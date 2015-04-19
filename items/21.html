@@ -1,0 +1,38 @@
+<div class="panel panel-info">
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">21</span> Use static factory method</h3>
+	</div>
+	<div class="panel-body content">
+		<ul>
+			<li>You can have meaningful constructors. newIntent, newDialog, newAdapter etc</li>
+			<li>The class itself has the object creation responsibility</li>
+			<li>You can control the instance such as singleton</li>
+			<li>You can return subclass instead of the base type</li>
+			<li>You can keep the keys in the class and not expose</li>
+		</ul>
+	<pre class='prettyprint'>class LoginActivity {
+    private static final KEY_FOO = "key_foo";
+
+    public static Intent newIntent(Context context, String foo){
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.putExtra(KEY_FOO, foo);
+
+        return intent;
+    } 
+}</pre>
+
+And use it whenever you want to start LoginActivity
+
+	<pre class='prettyprint'>class MainActivity {
+    public void displayLogin(String foo){
+        Intent intent = LoginActivity.newIntent(this,foo);
+        startActivity(intent);
+    } 
+}</pre>
+
+Same rule for adapters/fragments as well.
+<hr>
+<a href="http://twofoos.org/content/static-factory-methods/">twofoos</a>
+	</div>
+</div>

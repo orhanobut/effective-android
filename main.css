@@ -1,0 +1,130 @@
+body { padding-top: 80px; }
+hr { 
+	background-color: #DDDDDD; 
+	height: 1px; 
+	border: 0; 
+}
+.navbar {
+	background-color: #333333;
+	height: 20px;
+}
+.navbar-text{
+	color: #F5F5F5;
+	font-size: 20px;
+}
+.social {
+	padding: 10px;
+}
+.social ul {
+	display: inline-block;
+}
+.social ul li {
+	display: inline-block;
+	padding-right: 10px;
+}
+.content{
+	height: 100%;
+}
+.panel-footer {
+	background-color: white;
+	font-size: 10px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	height: 42px;
+}
+.panel-footer p {
+	text-align: left;
+	line-height: 40px;
+	vertical-align: bottom;
+	display: inline-block;
+}
+.panel-footer button {
+	float: right;
+	clear: both;
+}
+
+.panel-primary {
+	border:0px;
+}
+.panel-primary > .panel-heading {
+	background-color: #7bad4c!important;
+	border-color: #7bad4c;
+}
+
+.panel-warning {
+	border:0px;
+}
+.panel-warning > .panel-heading {
+	background-color: #1c708c!important;
+	border-color: #1c708c;
+	color: white;
+}
+
+.panel-info {
+	border: 0px;
+}
+.panel-info > .panel-heading {
+	background-color: #60605e!important;
+	border-color: #60605e;
+	color: white;
+} 
+
+.panel-success {
+	border: 0px;
+}
+.panel-success > .panel-heading {
+	background-color: #da933b!important;
+	border-color: #da933b;
+	color: white;
+} 
+
+.panel-danger {
+	border: 0px;
+}
+.panel-danger > .panel-heading {
+	background-color: #a04566!important;
+	border-color: #a04566;
+	color: white;
+}
+
+.panel-default {
+	border: 0px;
+}
+.panel-default > .panel-heading {
+	background-color: #2b808e!important;
+	border-color: #2b808e;
+	color: white;
+} 
+
+.badge {
+	background-color: white !important;
+	color: black !important;
+}
+
+body {
+	background: #E9E9E9;
+}
+#blog-landing {
+	position: relative;
+	max-width: 100%;
+	width: 100%;
+}
+.white-panel {
+	position: absolute;
+	background: transparent;
+}
+code, pre {
+	min-width: 320px;
+	max-width: 480px;
+	font-size: 11px;
+	padding: 8px !important;
+	margin-top: 12px;
+	margin-bottom: 12px;
+}
+.forkme_banner {
+	background-color: white;
+	padding: 8px;
+}
+.forkme_banner a:link, a:visited {
+	content: black;
+}

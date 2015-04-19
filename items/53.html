@@ -1,0 +1,16 @@
+<div class="panel panel-danger">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">53</span> Be aware of 65k method limit</h3>
+	</div>
+	<div class="panel-body content">
+		Android application is limited by 65k method. You may easily get TOP LEVEL EXCEPTION due to exceeding method limit. To avoid this:
+		<hr>
+		<ul>
+			<li>Use proguard</li>
+			<li>Don't add playservices blindly in gradle as dependency. Play services comes with a very huge method count if you directly download all of them at once. Use only what you needed.</li>
+		</ul>
+		<pre class="prettyprint">compile 'com.google.android.gms:play-services-base:7.0.0'</pre>
+		<hr>
+		<a href="https://developer.android.com/tools/building/multidex.html">developer.android</a> - <a href="http://stackoverflow.com/questions/27589560/how-to-avoid-65k-method-limit-while-using-google-play-services">stackoverflow</a>
+	</div>
+</div>

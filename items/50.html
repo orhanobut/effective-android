@@ -1,0 +1,19 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">50</span> Use gradle wisely</h3>
+	</div>
+	<div class="panel-body content">
+		Gradle is very powerful, use it for your every configuration and for dependencies of course.
+		<hr>
+		Use manifestholder to have dynamic values in manifest
+		<pre class="prettyprint">manifestPlaceholders = [appName: APP_NAME]</pre>
+		Use resValue to add resources dynamically
+		<pre class="prettyprint">resValue "string", "RES_FOO", "RES FOO RELEASE"</pre>
+		Use applicationSuffix to change applicationId for different build types
+		<pre class="prettyprint">applicationIdSuffix '.qa'</pre>
+		Use buildConfigField to add more values dynamically in order to have different values for different build types/flavors
+		<pre class="prettyprint">buildConfigField 'String', 'ENDPOINT', '"YOUR_ENDPOINT"'</pre>
+		<hr>
+		<a href="https://gradle.org/getting-started-android/">gradle</a>
+	</div>
+</div>

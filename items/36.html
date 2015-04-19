@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">36</span> Binary vs Base64</h3>
+	</div>
+	<div class="panel-body content">
+		When uploading image to the server, you can either use binary or Base64.
+		<hr>
+		<ul>
+			<li>Binary data cannot be escaped in JSON. You can use Base64 in that case</li>
+			<li>Base64 uses 8 bit format, thus size is %33 more than binary data. Use Base64 when you are sending your image as string in a json body for example.</li>
+			<li>If you are sending the data directly, use binary data and use "image/jpeg" or "image/png" for mime type or your specific image type</li>
+		</ul>
+	</div>
+</div>

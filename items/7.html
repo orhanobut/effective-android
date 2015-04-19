@@ -1,0 +1,16 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="badge">7</span> Aim for Loosely Coupling</h3>
+	</div>
+	<div class="panel-body content">
+		Each component should have less depend on other components
+		<hr>
+		<ul>
+			<li>Use EventBus to communicate from activity to fragment. Thus you don't have to rely specific fragment</li>
+			<li>Use EventBus to deliver network responses</li>
+			<li>Avoid casting as much as possible. ie: In fragment, if you call MainActivity, you will be tightly coupled with the main activity class. Avoid doing this. Use abstractions such as interface</li>
+		</ul>
+		<hr>
+		<a href='http://en.wikipedia.org/wiki/Loose_coupling'>wikipedia</a> | <a href='http://java.dzone.com/articles/coupling-and-cohesion-failed'>java.dzone</a>
+	</div>
+</div>
